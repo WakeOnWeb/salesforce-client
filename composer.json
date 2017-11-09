@@ -1,0 +1,24 @@
+{
+  "name": "wakeonweb/salesforce-client",
+  "type": "library",
+  "description": "WakeOnWeb Salesforce client",
+  "keywords": [
+    "salesforce"
+  ],
+  "homepage": "https://github.com/wakeonweb/salesforce-client",
+  "license": "MIT",
+  "authors": [{
+      "name": "Community contributors",
+      "homepage": "https://github.com/wakeonweb/salesforce-client/contributors"
+  }],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.0",
+    "guzzlehttp/guzzle": "^6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "WakeOnWeb\\SalesforceClient\\": "src"
+    }
+  }
+}
