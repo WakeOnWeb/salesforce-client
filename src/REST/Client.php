@@ -3,10 +3,12 @@
 namespace WakeOnWeb\SalesforceClient\REST;
 
 use GuzzleHttp\Client as HttpClient;
-use WakeOnWeb\SalesforceClient\Exception\SalesforceClientException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use WakeOnWeb\SalesforceClient\ClientInterface;
+use WakeOnWeb\SalesforceClient\DTO;
 use WakeOnWeb\SalesforceClient\Exception;
+use WakeOnWeb\SalesforceClient\Exception\SalesforceClientException;
 use WakeOnWeb\SalesforceClient\REST\GrantType\StrategyInterface as GrantTypeStrategyInterface;
 
 class Client implements ClientInterface
@@ -76,9 +78,9 @@ class Client implements ClientInterface
     }
 
 
-    public function createObject(string $object, array $data): array
+    public function createObject(string $object, array $data): DTO\SalesforceObjectCreation
     {
-        return $this->doAuthenticatedRequest(
+        $data = $this->doAuthenticatedRequest(
             new Request(
                 'POST',
                 $this->gateway->getServiceDataUrl(static::OBJECT_PATH.'/'.$object),
@@ -86,6 +88,8 @@ class Client implements ClientInterface
                 json_encode($data)
             )
         );
+
+        return DTO\SalesforceObjectCreation::createFromArray($data);
     }
 
     public function patchObject(string $object, string $id, array $data): void
@@ -110,7 +114,7 @@ class Client implements ClientInterface
         );
     }
 
-    public function getObject(string $object, string $id, array $fields = []): array
+    public function getObject(string $object, string $id, array $fields = []): DTO\SalesforceObject
     {
         $url = $this->gateway->getServiceDataUrl(static::OBJECT_PATH.'/'.$object.'/'.$id);
 
@@ -118,8 +122,8 @@ class Client implements ClientInterface
             $url .= '?fields='.implode(',', $fields);
         }
 
-        return $this->doAuthenticatedRequest(
-            new Request('GET', $url)
+        return DTO\SalesforceObject::createFromArray(
+            $this->doAuthenticatedRequest(new Request('GET', $url))
         );
     }
 
@@ -151,6 +155,8 @@ class Client implements ClientInterface
         try {
             $client = new HttpClient();
             $response = $client->send($request);
+        } catch (RequestException $e) {
+            throw Exception\ExceptionFactory::generateFromRequestException($e);
         } catch (\Exception $e) {
             throw new SalesforceClientException($e->getMessage(), 0, $e);
         }
