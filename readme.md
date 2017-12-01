@@ -26,9 +26,7 @@ $client = new REST\Client(
     )
 );
 ```
-
-Available exception
--------------------
+Available exception -------------------
 
 - DuplicatesDetectedException
 - EntityIsDeletedException (when try to delete an entity already deleted)
@@ -81,8 +79,12 @@ SOQL
 ----
 
 ```
-client->searchSOQL('SELECT name from Account'); // NOT_ALL by default.
-client->searchSOQL('SELECT name from Account', ClientInterface::ALL);
+// creation will be a SalesforceObjectCreationObjectResults
+$client->searchSOQL('SELECT name from Account'); // NOT_ALL by default.
+$client->searchSOQL('SELECT name from Account', ClientInterface::ALL);
+// $creation->getTotalSize();
+// $creation->isDone();
+// $creation->getRecords();
 ```
 
 Other

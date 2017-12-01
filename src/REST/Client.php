@@ -127,13 +127,15 @@ class Client implements ClientInterface
         );
     }
 
-    public function searchSOQL(string $query, bool $all = self::NOT_ALL): array
+    public function searchSOQL(string $query, bool $all = self::NOT_ALL): DTO\SalesforceObjectResults
     {
         $url = $this->gateway->getServiceDataUrl($all ? 'queryAll' : 'query').'?q='.$query;
 
-        return $this->doAuthenticatedRequest(
-            new Request('GET', $url)
+        return DTO\SalesforceObjectResults::createFromArray(
+            $this->doAuthenticatedRequest(
+                new Request('GET', $url)
 
+            )
         );
     }
 

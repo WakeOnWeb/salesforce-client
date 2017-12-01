@@ -25,7 +25,7 @@ interface ClientInterface
 
     public function getObject(string $object, string $id, array $fields = []): DTO\SalesforceObject;
 
-    public function searchSOQL(string $query, bool $all = false): array;
+    public function searchSOQL(string $query, bool $all = false): DTO\SalesforceObjectResults;
 
     public function explainSOQL(string $query): array;
 }
