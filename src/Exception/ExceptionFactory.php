@@ -12,13 +12,13 @@ abstract class ExceptionFactory
         $data = json_decode($body, true);
 
         if (false === is_array($data)) {
-            throw $this->throwsDefaultException($e);
+            throw static::createDefaultException($e);
         }
 
         $error = current($data);
 
         if (false === is_array($error) || false === array_key_exists('errorCode', $error)) {
-            throw $this->throwsDefaultException($e);
+            throw static::createDefaultException($e);
         }
 
         $message = array_key_exists('message', $error) ? $error['message'] : $e->getMessage();
@@ -39,8 +39,8 @@ abstract class ExceptionFactory
         }
     }
 
-    private function createDefaultException(RequestException $e)
+    private static function createDefaultException(RequestException $e)
     {
-        throw new SalesforceClientException($e->getMessage(), 0, $e);
+        return new SalesforceClientException($e->getMessage(), 0, $e);
     }
 }
