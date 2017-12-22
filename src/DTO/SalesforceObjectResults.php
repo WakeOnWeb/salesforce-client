@@ -44,7 +44,7 @@ class SalesforceObjectResults
 
     public function isDone(): bool
     {
-        return $this->bool;
+        return $this->done;
     }
 
     public function getRecords(): array

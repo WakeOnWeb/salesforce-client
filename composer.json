@@ -1,29 +1,37 @@
 {
-  "name": "wakeonweb/salesforce-client",
-  "type": "library",
-  "description": "WakeOnWeb Salesforce client",
-  "keywords": [
-    "salesforce"
-  ],
-  "homepage": "https://github.com/wakeonweb/salesforce-client",
-  "license": "MIT",
-  "authors": [{
-      "name": "Community contributors",
-      "homepage": "https://github.com/wakeonweb/salesforce-client/contributors"
-  }],
-  "minimum-stability": "dev",
-  "require": {
-    "php": ">=7.0",
-    "guzzlehttp/guzzle": "^6.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "WakeOnWeb\\SalesforceClient\\": "src"
+    "name": "wakeonweb/salesforce-client",
+    "type": "library",
+    "description": "WakeOnWeb Salesforce client",
+    "keywords": [
+        "salesforce"
+    ],
+    "homepage": "https://github.com/wakeonweb/salesforce-client",
+    "license": "MIT",
+    "authors": [{
+        "name": "Community contributors",
+        "homepage": "https://github.com/wakeonweb/salesforce-client/contributors"
+    }],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "WakeOnWeb\\SalesforceClient\\": "src"
+        }
+    },
+    "autoload-dev":{
+        "psr-4":{
+            "Tests\\WakeOnWeb\\SalesforceClient\\":"tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
-  },
-  "extra": {
-      "branch-alias": {
-          "dev-master": "1.0-dev"
-      }
-  }
 }

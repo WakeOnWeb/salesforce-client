@@ -19,10 +19,11 @@ class Client implements ClientInterface
 
     const OBJECT_PATH = 'sobjects';
 
-    public function __construct(Gateway $gateway, GrantTypeStrategyInterface $grantTypeStrategy)
+    public function __construct(Gateway $gateway, GrantTypeStrategyInterface $grantTypeStrategy, HttpClient $httpClient = null)
     {
         $this->gateway = $gateway;
         $this->grantTypeStrategy = $grantTypeStrategy;
+        $this->httpClient = $httpClient ?: new HttpClient();
     }
 
     public function getAvailableResources(): array
@@ -139,7 +140,7 @@ class Client implements ClientInterface
         );
     }
 
-    public function explainSOQL(string $query): array
+    public function explainSOQL(string $query, bool $all = self::NOT_ALL): array
     {
         $url = $this->gateway->getServiceDataUrl($all ? 'queryAll' : 'query').'?explain='.$query;
 
@@ -155,8 +156,7 @@ class Client implements ClientInterface
         $request = $request->withAddedHeader('Authorization', 'Bearer '.$this->accessToken);
 
         try {
-            $client = new HttpClient();
-            $response = $client->send($request);
+            $response = $this->httpClient->send($request);
         } catch (RequestException $e) {
             throw Exception\ExceptionFactory::generateFromRequestException($e);
         } catch (\Exception $e) {
