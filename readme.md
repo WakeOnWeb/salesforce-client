@@ -1,6 +1,8 @@
 PHP Salesforce client
 =====================
 
+[![Build Status](https://api.travis-ci.org/WakeOnWeb/salesforce-client.svg)](https://travis-ci.org/WakeOnWeb/salesforce-client)
+
 Supported technologies:
 
     - rest
