@@ -3,7 +3,7 @@
 namespace WakeOnWeb\SalesforceClient\DTO;
 
 /**
- * SalesforceObject
+ * SalesforceObject.
  *
  * @author Stephane PY <s.py@wakeonweb.com>
  */
@@ -25,7 +25,10 @@ class SalesforceObjectCreation
     public static function createFromArray(array $data)
     {
         return new self(
-            $data['id'], $data['success'], $data['errors'], $data['warnings']
+            $data['id'],
+            $data['success'],
+            $data['errors'],
+            $data['warnings']
         );
     }
 

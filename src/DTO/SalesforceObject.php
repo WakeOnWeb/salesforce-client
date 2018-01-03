@@ -3,7 +3,7 @@
 namespace WakeOnWeb\SalesforceClient\DTO;
 
 /**
- * SalesforceObject
+ * SalesforceObject.
  *
  * @author Stephane PY <s.py@wakeonweb.com>
  */
@@ -65,5 +65,4 @@ class SalesforceObject
     {
         return array_key_exists($key, $this->fields);
     }
-
 }

@@ -2,8 +2,6 @@
 
 namespace WakeOnWeb\SalesforceClient;
 
-use WakeOnWeb\SalesforceClient\DTO;
-
 interface ClientInterface
 {
     const ALL = true;

@@ -78,7 +78,6 @@ class Client implements ClientInterface
         );
     }
 
-
     public function createObject(string $object, array $data): DTO\SalesforceObjectCreation
     {
         $data = $this->doAuthenticatedRequest(
@@ -135,7 +134,6 @@ class Client implements ClientInterface
         return DTO\SalesforceObjectResults::createFromArray(
             $this->doAuthenticatedRequest(
                 new Request('GET', $url)
-
             )
         );
     }

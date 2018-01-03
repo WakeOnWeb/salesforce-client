@@ -3,7 +3,7 @@
 namespace WakeOnWeb\SalesforceClient\DTO;
 
 /**
- * SalesforceObjectResults
+ * SalesforceObjectResults.
  *
  * @author Stephane PY <s.py@wakeonweb.com>
  */
