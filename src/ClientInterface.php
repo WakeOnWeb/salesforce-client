@@ -19,9 +19,9 @@ interface ClientInterface
 
     public function createObject(string $object, array $data): DTO\SalesforceObjectCreation;
 
-    public function patchObject(string $object, string $id, array $data): void;
+    public function patchObject(string $object, string $id, array $data);
 
-    public function deleteObject(string $object, string $id): void;
+    public function deleteObject(string $object, string $id);
 
     public function getObject(string $object, string $id, array $fields = []): DTO\SalesforceObject;
 

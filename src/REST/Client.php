@@ -93,7 +93,7 @@ class Client implements ClientInterface
         return DTO\SalesforceObjectCreation::createFromArray($data);
     }
 
-    public function patchObject(string $object, string $id, array $data): void
+    public function patchObject(string $object, string $id, array $data)
     {
         $this->doAuthenticatedRequest(
             new Request(
@@ -105,7 +105,7 @@ class Client implements ClientInterface
         );
     }
 
-    public function deleteObject(string $object, string $id): void
+    public function deleteObject(string $object, string $id)
     {
         $this->doAuthenticatedRequest(
             new Request(
@@ -166,7 +166,7 @@ class Client implements ClientInterface
         return json_decode((string) $response->getBody(), true);
     }
 
-    private function connectIfAccessTokenIsEmpty(): void
+    private function connectIfAccessTokenIsEmpty()
     {
         if (null !== $this->accessToken) {
             return;
