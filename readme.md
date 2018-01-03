@@ -11,7 +11,7 @@ Please, contribute to support other one.
 Usage
 -----
 
-```
+```php
 use WakeOnWeb\SalesforceClient\REST;
 use WakeOnWeb\SalesforceClient\ClientInterface;
 
@@ -36,7 +36,7 @@ Available exception -------------------
 Get object
 -----------
 
-```
+```php
 try {
     $salesforceObject = $client->getObject( 'Account', '1337ID')); // all fields
 } catch (\WakeOnWeb\SalesforceClient\Exception\NotFoundException) {
@@ -52,7 +52,7 @@ try {
 Create object 
 -----------
 
-```
+```php
 // creation will be a SalesforceObjectCreationObject
 $creation = $client->createObject( 'Account', ['name' => 'Chuck Norrs'] );
 // $creation->getId();
@@ -64,7 +64,7 @@ $creation = $client->createObject( 'Account', ['name' => 'Chuck Norrs'] );
 Edit object 
 -----------
 
-```
+```php
 $client->patchObject( 'Account', '1337ID', ['name' => 'Chuck Norris'] ));
 ```
 
@@ -78,7 +78,7 @@ $client->deleteObject( 'Account', '1337ID'));
 SOQL
 ----
 
-```
+```php
 // creation will be a SalesforceObjectCreationObjectResults
 $client->searchSOQL('SELECT name from Account'); // NOT_ALL by default.
 $client->searchSOQL('SELECT name from Account', ClientInterface::ALL);
@@ -90,7 +90,7 @@ $client->searchSOQL('SELECT name from Account', ClientInterface::ALL);
 Other
 -----
 
-```
+```php
 $client->getAvailableResources();
 $client->getAllObjects();
 $client->describeObjectMetadata('Account');
