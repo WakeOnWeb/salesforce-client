@@ -21,7 +21,7 @@ abstract class ExceptionFactory
             throw static::createDefaultException($e);
         }
 
-        $message = array_key_exists('message', $error) ? $error['message'] : $e->getMessage();
+        $message = static::generateErrorMessage($error, $e);
 
         switch ($error['errorCode']) {
             case 'DUPLICATES_DETECTED':
@@ -37,6 +37,14 @@ abstract class ExceptionFactory
                 return ErrorCodeException::createFromCode($error['errorCode'], $message);
             break;
         }
+    }
+
+    private static function generateErrorMessage(array $error, RequestException $e)
+    {
+        $message = array_key_exists('message', $error) ? $error['message'] : $e->getMessage();
+        $message .= "\nRequest: ".$e->getRequest()->getUri();
+
+        return $message;
     }
 
     private static function createDefaultException(RequestException $e)
