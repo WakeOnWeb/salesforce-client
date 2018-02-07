@@ -34,7 +34,11 @@ class SalesforceObjectResults
             $records[] = SalesforceObject::createFromArray($record);
         }
 
-        return new self($data['totalSize'], $data['done'], $records);
+        return new self(
+            (int) $data['totalSize'],
+            (bool) $data['done'],
+            $records
+        );
     }
 
     public function getTotalSize(): int

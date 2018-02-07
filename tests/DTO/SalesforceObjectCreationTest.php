@@ -28,4 +28,17 @@ class SalesforceObjectCreationTest extends TestCase
         $this->assertEquals($sut->getWarnings(), ['bar']);
     }
 
+    public function test_create_from_array_incomplete_data()
+    {
+        $sut = SUT::createFromArray([
+            'id' => 1337,
+            'success' => true,
+            'warnings' => null,
+        ]);
+
+        $this->assertEquals($sut->getId(), 1337);
+        $this->assertTrue($sut->isSuccess());
+        $this->assertEquals($sut->getErrors(), []);
+        $this->assertEquals($sut->getWarnings(), []);
+    }
 }

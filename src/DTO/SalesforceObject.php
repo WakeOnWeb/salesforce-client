@@ -20,7 +20,7 @@ class SalesforceObject
 
     public static function createFromArray(array $data)
     {
-        $attributes = array_key_exists('attributes', $data) ? $data['attributes'] : [];
+        $attributes = array_key_exists('attributes', $data) ? (array) $data['attributes'] : [];
         unset($data['attributes']);
 
         return new self($attributes, $data);

@@ -25,10 +25,10 @@ class SalesforceObjectCreation
     public static function createFromArray(array $data)
     {
         return new self(
-            $data['id'],
-            $data['success'],
-            $data['errors'],
-            $data['warnings']
+            (string) $data['id'],
+            (bool) $data['success'],
+            array_key_exists('errors', $data) ? (array) $data['errors'] : [],
+            array_key_exists('warnings', $data) ? (array) $data['warnings'] : []
         );
     }
 
