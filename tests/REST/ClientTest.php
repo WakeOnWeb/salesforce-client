@@ -89,7 +89,7 @@ class ClientTest extends TestCase
 
     public function test_patch_object()
     {
-        $sut = $this->createSUT(null, new Response(200));
+        $sut = $this->createSUT(null, new Response(204));
         // we can't test the request since stream are different ...
         // let's find a way to fix that.
         $this->assertNull($sut->patchObject('foo', 1234, []));

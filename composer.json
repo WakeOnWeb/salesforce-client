@@ -1,15 +1,15 @@
 {
-    "name": "wakeonweb/salesforce-client",
+    "name": "thecamp/salesforce-client",
     "type": "library",
     "description": "WakeOnWeb Salesforce client",
     "keywords": [
         "salesforce"
     ],
-    "homepage": "https://github.com/wakeonweb/salesforce-client",
+    "homepage": "https://github.com/thecampProvence/salesforce-client",
     "license": "MIT",
     "authors": [{
         "name": "Community contributors",
-        "homepage": "https://github.com/wakeonweb/salesforce-client/contributors"
+        "homepage": "https://github.com/thecampProvence/salesforce-client/contributors"
     }],
     "minimum-stability": "dev",
     "require": {
