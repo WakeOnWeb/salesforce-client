@@ -161,7 +161,14 @@ class Client implements ClientInterface
             throw new SalesforceClientException($e->getMessage(), 0, $e);
         }
 
-        return json_decode((string) $response->getBody(), true);
+        $body = '[]';
+
+        // Check if response has content
+        if ($response->getStatusCode() !== 204) {
+            $body = (string) $response->getBody();
+        }
+
+        return json_decode($body, true);
     }
 
     private function connectIfAccessTokenIsEmpty()
