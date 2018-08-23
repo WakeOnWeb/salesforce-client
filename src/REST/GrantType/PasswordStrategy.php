@@ -38,16 +38,11 @@ class PasswordStrategy implements StrategyInterface
             'password' => $this->password.$this->token,
         ];
 
-        $request = new Request(
-            'POST',
-            $gateway->getEndpoint().static::OAUTH_TOKEN_PATH,
-            ['content-type' => 'application/x-www-form-urlencoded'],
-            http_build_query($data)
-        );
-
         try {
             $client = new HttpClient();
-            $response = $client->send($request)->getBody();
+            $response = $client->post($gateway->getEndpoint().static::OAUTH_TOKEN_PATH, [
+                'form_params' => $data,
+            ])->getBody();
         } catch (\Exception $e) {
             throw new Exception\AuthenticationException($e->getMessage(), 0, $e);
         }
